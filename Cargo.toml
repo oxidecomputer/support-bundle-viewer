@@ -1,0 +1,15 @@
+[package]
+name = "support-bundle-viewer"
+version = "0.1.0"
+edition = "2021"
+license = "MPL-2.0"
+
+[dependencies]
+anyhow = "1.0"
+async-trait = "0.1.88"
+bytes = "1.10.1"
+camino = { version = "1.1", features = ["serde1"] }
+crossterm = { version = "0.28.1", features = ["event-stream"] }
+ratatui = "0.29.0"
+tokio = { version = "1.43.0", features = ["io-util", "io-std", "time"] }
+zip = { version = "2.6.0", default-features = false, features = ["deflate","bzip2"] }
