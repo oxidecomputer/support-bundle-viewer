@@ -1,7 +1,7 @@
 [package]
 name = "support-bundle-viewer"
 description = "Tools for inspecting an Oxide support bundle"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MPL-2.0"
 
