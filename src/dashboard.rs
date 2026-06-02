@@ -242,7 +242,10 @@ async fn run_support_bundle_dashboard<B: Backend>(
     terminal: &mut Terminal<B>,
     dashboard: &mut SupportBundleDashboard<'_>,
     force_update: bool,
-) -> anyhow::Result<InspectRunStep> {
+) -> anyhow::Result<InspectRunStep>
+where
+    B::Error: Send + Sync + 'static,
+{
     let update = if crossterm::event::poll(Duration::from_secs(0))? {
         if let Event::Key(key) = event::read()? {
             let shifted = key.modifiers.contains(event::KeyModifiers::SHIFT);
