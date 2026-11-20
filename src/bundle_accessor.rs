@@ -52,7 +52,7 @@ impl LocalFileAccess {
 #[async_trait]
 impl SupportBundleAccessor for LocalFileAccess {
     async fn get_index(&self) -> Result<SupportBundleIndex> {
-        let names: Vec<&str> = self.archive.file_names().collect();
+        let names = self.archive.file_names().collect::<Result<Vec<_>, _>>()?;
         let all_names = names.join("\n");
         Ok(SupportBundleIndex::new(&all_names))
     }

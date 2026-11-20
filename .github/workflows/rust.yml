@@ -9,16 +9,19 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   check-style:
     runs-on: ubuntu-latest
     steps:
-    # actions/checkout@v2
-    - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-    - uses: actions-rs/toolchain@88dc2356392166efad76775c878094f4e83ff746
+    # actions/checkout@v7.0.1
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+    # dtolnay/rust-toolchain@stable
+    - uses: dtolnay/rust-toolchain@39008827e6b4319a349e9a42dfc90579dd25f1ca
       with:
         toolchain: stable
-        default: false
         components: rustfmt
     - name: Check style
       run: cargo fmt -- --check
@@ -26,8 +29,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    # actions/checkout@v2
-    - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+    # actions/checkout@v7.0.1
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
     - name: Cargo check
       run: cargo check --no-default-features
 
@@ -37,8 +40,8 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
     steps:
-    # actions/checkout@v2
-    - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+    # actions/checkout@v7.0.1
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
     - name: Build
       run: cargo build --tests --verbose
     - name: Run tests
